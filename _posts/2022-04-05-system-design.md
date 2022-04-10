@@ -133,10 +133,11 @@ http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelop
 根据HASH结果分区，将结果映射到N个区间中，极端条件下，该算法也存在数据平衡性问题，可考虑使用**一致性哈希算法**
 
 
-## 2. 设计Ins
+## 2. 设计Instagram
 ### 2.1 功能点
-- 支持Feed，新照片排在前面，流畅
-- 能上传照片
+- 支持Feed，关注用户的Post按时间排序
+- 能上传、下载照片
+- 支持关注用户
 
 ### 2.2 资源估算
 询问DAU、延迟等参数
