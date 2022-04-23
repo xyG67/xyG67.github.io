@@ -129,31 +129,23 @@ func checkSymmetric(left, right *TreeNode) bool {
 
 ```
 func minDepth(root *TreeNode) int {
-    return dfs(root, 0)
-}
+    if root == nil {
+        return 0
+    }
+    left := dfs(root.Left)
+    right := dfs(root.Right)
 
-func dfs(node *TreeNode, length int) int {
-    if node == nil {
-        return length
+    min := left
+    if right < left {
+        min = right
     }
-    if node.Left == nil && node.Right == nil {
-        return length + 1
+    if root.Left == nil && root.Right == nil {
+        return min + 1
     }
-    minLength := math.MaxInt32
-    if node.Left != nil {
-        minLength = min(dfs(node.Left, length), minLength)
+    if root.Left == nil || root.Right == nil {
+        return right + left + 1
     }
-    if node.Right != nil {
-        minLength = min(dfs(node.Right, length), minLength)
-    }
-    return minLength + 1
-}
-
-func min(a, b int) int {
-    if a < b {
-        return a
-    }
-    return b
+    return min + 1
 }
 ```
 
@@ -242,6 +234,8 @@ func (q *Queue) len() int {
 - 构造ROOT
 - left = 前序左子树 + 中序左子树
 - right = 前序右子树 + 中序右子树
+
+
 ```
 func buildTree(preorder []int, inorder []int) *TreeNode {
     if len(preorder) == 0 {

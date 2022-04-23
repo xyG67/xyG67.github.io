@@ -17,6 +17,8 @@ https://darktiantian.github.io/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%9
 
 ## 2. 解法
 快慢指针
+
+
 ```
 func removeDuplicates(nums []int) int {
     cnt := len(nums)
@@ -47,6 +49,7 @@ func removeDuplicates(nums []int) int {
 ```
 
 # [Leetcode 54](https://leetcode-cn.com/problems/spiral-matrix/)
+
 ## 1. 题目要求
 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
 
@@ -55,6 +58,8 @@ func removeDuplicates(nums []int) int {
 TIPS: 
 - 维护direction列表，轻易切换方向
 - 记录访问过的点，控制转向
+
+
 ```
 func spiralOrder(matrix [][]int) []int {
    if len(matrix) == 0 || len(matrix[0]) == 0 {
@@ -108,6 +113,8 @@ func spiralOrder(matrix [][]int) []int {
 
 TIPS: 
 - 同54
+
+
 ```
 func generateMatrix(n int) [][]int {
 	ret := make([][]int, 0)  // 注意这里是0
@@ -154,6 +161,7 @@ func generateMatrix(n int) [][]int {
 ## 2. 解法
 
 比较简单的方法是 和I-2位的比较大小
+
 ```
 func removeDuplicates(arr []int) int {
     if len(arr) < 3 {
@@ -188,6 +196,7 @@ func removeDuplicates(arr []int) int {
 
 ## 2. 解法
 简单看一下就好了。。
+
 ```
 func plusOne(digits []int) []int {
     ret := arr
@@ -238,7 +247,6 @@ func majorityElement(nums []int) int {
 ```
 
 
-
 # [Leetcode 989](https://leetcode-cn.com/problems/add-to-array-form-of-integer/)
 ## 1. 题目要求
 整数的 数组形式  num 是按照从左到右的顺序表示其数字的数组。
@@ -254,6 +262,7 @@ func majorityElement(nums []int) int {
 
 ## 2. 解法
 66的衍生题
+
 ```
 func addToArrayForm(nums []int, k int) []int {
     if k == 0 {
@@ -320,6 +329,7 @@ The Next Greater Number of a number x in nums1 is the first greater number to it
 有A,B两个数组，A中的元素在B中都存在，且两个数组内元素没有重复。现在要找到A中所有元素，在B中对应的位置上，是否右侧第一个比它大的数字。
  
 示例 1：
+
 ```
 输入：nums1 = [4,1,2], nums2 = [1,3,4,2].
 输出：[-1,3,-1]
@@ -329,7 +339,9 @@ The Next Greater Number of a number x in nums1 is the first greater number to it
 - 2 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。
 ```
 
+
 示例 2：
+
 ```
 输入：nums1 = [2,4], nums2 = [1,2,3,4].
 输出：[3,-1]
@@ -342,6 +354,7 @@ The Next Greater Number of a number x in nums1 is the first greater number to it
 HashMap存 element:index, 先遍历B，再遍历A。
 
 Java
+
 
 ```
 public int[] nextGreaterElement(int[] nums1, int[] nums2) {
@@ -361,6 +374,7 @@ public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         return nums1;
     }
 ```
+
 Golang
 - 没有原生STACK API。。
 - 遍历B：
@@ -407,6 +421,7 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 - 遍历过程中，删除距离过远（nums[i-k]/(t+1)）的桶里的数字（因不满足 相距k以内的条件）
 - 数字不存在，将数丢到对应桶里
 - 并且，检查相邻的桶里是否有符合要求的数字
+
 ```
 func containsNearbyAlmostDuplicate(nums []int, k int, t int) bool {
     bucket := make(map[int]int, 0) // key: val, val: idx
@@ -480,3 +495,151 @@ public int distributeCandies(int[] candies) {
 
 
 https://juejin.cn/post/7031351811898343460
+
+
+# [Leetcode 448 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/solution/)
+## 1. 题目要求
+给你一个含 n 个整数的数组 nums ，其中 nums[i] 在区间 [1, n] 内。请你找出所有在 [1, n] 范围内但没有出现在 nums 中的数字，并以数组的形式返回结果。
+
+
+示例 1：
+
+输入：nums = [4,3,2,7,8,2,3,1]
+输出：[5,6]
+示例 2：
+
+输入：nums = [1,1]
+输出：[2]
+
+要求：不使用额外的空间
+
+## 2. 解法    
+鸽笼原理
+由题意可得，数组有1~n个笼子，如果出现过，相应的“鸽笼”就会被占掉，即将对应位置数字加N。 
+最后遍历一遍，如果“鸽笼”数字小于N，即没出现的该数字。
+
+```
+func findDisappearedNumbers(nums []int) []int {
+    n := len(nums)
+    for _, num := range nums {
+        val := (num - 1) % n
+        nums[val] += n
+    }
+
+    fmt.Print(nums)
+    ret := []int{}
+    for i, num := range nums {
+        if num <= n {
+            ret = append(ret, i + 1)
+        }
+    }
+    return ret
+}
+```
+
+# [Leetcode 179 最大数](https://leetcode-cn.com/problems/largest-number/)
+## 1. 题目要求
+给定一组非负整数 nums，重新排列每个数的顺序（每个数不可拆分）使之组成一个最大的整数。
+
+注意：输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+
+ 
+
+示例 1：
+
+输入：nums = [10,2]
+输出："210"
+示例 2：
+
+输入：nums = [3,30,34,5,9]
+输出："9534330"
+
+
+## 2. 解法    
+
+merge sort 修改比较器
+
+```
+
+func maxLeftNum(a, b int) int {
+    sa, sb := 10, 10
+    for sa <= a {
+        sa = sa * 10
+    }
+    for sb <= b {
+        sb = sb * 10
+    }
+
+    if sa * b + a > sb * a + b {
+        return b
+    } else {
+        return a
+    }
+}
+
+```
+
+
+# [Medium Leetcode 347 top k freqenct](https://leetcode-cn.com/problems/top-k-frequent-elements/)
+## 1. 题目要求
+
+给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以按 任意顺序 返回答案。
+
+ 
+
+示例 1:
+
+输入: nums = [1,1,1,2,2,3], k = 2
+输出: [1,2]
+示例 2:
+
+输入: nums = [1], k = 1
+输出: [1]
+
+
+## 2. 解法    
+
+Priority Queue
+需要使用heap库实现PQ（修改比较器 和 push pop函数）。
+
+先计数，再push到pq内，最后输val前k个的key。
+
+类似的题包括 692 https://leetcode-cn.com/problems/top-k-frequent-words/ 
+
+```
+type Item struct {
+	Key   int
+	Count int
+}
+
+// A PriorityQueue implements heap.Interface and holds Items.
+type PriorityQueue []*Item
+
+func (pq PriorityQueue) Len() int {
+	return len(pq)
+}
+
+func (pq PriorityQueue) Less(i, j int) bool {
+	fmt.Println("???")
+	return pq[i].Count > pq[j].Count
+}
+
+func (pq PriorityQueue) Swap(i, j int) {
+	pq[i], pq[j] = pq[j], pq[i]
+}
+
+// Push define
+func (pq *PriorityQueue) Push(x interface{}) {
+	item := x.(*Item)
+	*pq = append(*pq, item)
+}
+
+// Pop define
+func (pq *PriorityQueue) Pop() interface{} {
+	n := len(*pq)
+	item := (*pq)[n-1]
+	*pq = (*pq)[:n-1]
+	return item
+}
+
+```

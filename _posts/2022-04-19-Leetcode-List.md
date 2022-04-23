@@ -196,7 +196,7 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 }
 ```
 
-# [Leetcode 138](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
+# [Leetcode 138 deep copy 随机指针链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
 ## 1. 题目要求
 给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。
 
@@ -274,7 +274,7 @@ func hasCycle(head *ListNode) bool {
 
 
 
-# [Leetcode 142](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+# [Leetcode 142 返回链表入环的第一个节点](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 ## 1. 题目要求
 给定一个链表的头节点  head ，**返回链表开始入环的第一个节点**。 如果链表无环，则返回 null。
 
@@ -421,6 +421,7 @@ O(nlogn)
 
 - 空间复杂度：O(logn)，其中 n 是链表的长度。空间复杂度主要取决于递归调用的栈空间。
 
+
 ```
 func merge(head1, head2 *ListNode) *ListNode {
     dummyHead := &ListNode{}
@@ -472,7 +473,7 @@ func sortList(head *ListNode) *ListNode {
 
 ```
 
-2. Solution - bottom-up
+1. Solution - bottom-up
 
 使用自底向上的方法实现归并排序，则可以达到 O(1) 的空间复杂度。
 
@@ -485,6 +486,7 @@ func sortList(head *ListNode) *ListNode {
 - 每次将链表拆分成若干个长度为subLength 的子链表（最后一个子链表的长度可以小于subLength），按照每两个子链表一组进行合并，合并后即可得到若干个长度为 subLength×2 的有序子链表。
 
 - 将 subLength 的值加倍，重复第 2 步，对更长的有序子链表进行合并操作，直到有序子链表的长度大于或等于length，整个链表排序完毕。
+
 
 ```
 func merge(head1, head2 *ListNode) *ListNode {
@@ -560,6 +562,7 @@ func sortList(head *ListNode) *ListNode {
 
 ## 2. 解法
 
+
 ```
 func reverseList(n *ListNode) *ListNode {
     if n == nil {
@@ -589,6 +592,7 @@ func reverseList(n *ListNode) *ListNode {
 如果有两个中间结点，则返回第二个中间结点。
 
 ## 2. 解法
+
 
 ```
 func middleNode(head *ListNode) *ListNode {
@@ -624,7 +628,17 @@ func middleNode(head *ListNode) *ListNode {
 
 
 
-# [Leetcode ]()
+
+# [Leetcode 448 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/solution/)
+## 1. 题目要求
+
+
+## 2. 解法
+
+```
+```
+
+# [Leetcode 448 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/solution/)
 ## 1. 题目要求
 
 
