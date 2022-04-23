@@ -6,6 +6,10 @@ date: 2022-04-10
 https://darktiantian.github.io/LeetCode%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%EF%BC%88%E6%95%B0%E7%BB%84%E7%AF%87%EF%BC%89Array/
 
 
+# 滑动窗口
+- 长度最小的子数组（209 Medium）
+  - n个正整数数组，找出满足和>S的最短连续子数组，返回长度
+
 
 # [Leetcode 26](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
 ## 1. 题目要求
